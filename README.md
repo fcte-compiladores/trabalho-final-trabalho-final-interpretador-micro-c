@@ -1,93 +1,79 @@
-# Interpretador Micro C
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Hppw7Zh2)
+# Trabalho Final
 
-## Integrantes
+## Escopo e organização
 
-- Ana Luíza Fernandes Alves da Rocha – 211030667
-- Ian Lucca Soares Mesquita - 211045140
-- Tales Rodrigues Gonçalves - 211041295
+O trabalho é de tema livre dentro do escopo da disciplina de compiladores e
+consiste no desenvolvimento de alguma aplicação na área da disciplina (um
+interpretador para uma linguagem simples, compilador, analisadores de código,
+etc.)
 
-## Introdução
+O trabalho pode ser feito em grupos de até 4 pessoas.
 
-Este projeto implementa um interpretador para uma linguagem fictícia chamada **Micro C**, inspirada na linguagem C, porém com sintaxe simplificada. O interpretador foi desenvolvido em JavaScript (Node.js) e suporta as seguintes construções:
+## Estrutura
 
-- Tipos: `int`, `string`
-- Entrada e saída: `read`, `print`
-- Controle de fluxo: `if`, `else`, `while`, `for`
-- Funções: `fun nome() { ... }` com suporte a `return`
-- Comentários: `// comentário`
-- Expressões aritméticas: `+`, `-`, `*`, `/`
-- Expressões relacionais: `==`, `!=`, `<`, `<=`, `>`, `>=`
+Os trabalhos devem ser entregues na atividade própria no [github-classrrom](...).
+Cada repositório deve ter uma estrutura parecida com a delineada abaixo:
 
-### Exemplo de código Micro C
+* **README:** o arquivo README.md na base do repositório deve descrever os
+  detalhes da implementação do código. O README deve ter algumas seções 
+  obrigatórias:
+  - **Título**: nome do projeto
+  - **Integrantes**: lista com os nomes, matrículas e turma de cada integrante.
+  - **Introdução**: deve detalhar o que o projeto implementou, quais foram as
+    estratégias e algoritmos relevantes. Se o projeto implementa uma linguagem
+    não-comum ou um subconjunto de uma linguagem comum, deve conter alguns
+    exemplos de comandos nesta linguagem, descrendo a sua sintaxe e semântica,
+    quando necessário.
+  - **Instalação**: deve detalhar os passos para instalar as dependências e
+    rodar o código do projeto. Pode ser algo simples como *"Rode
+    `uv run lox hello.lox` para executar o interpretador."*, se a linguagem de
+    implementação permitir este tipo de facilidade.
 
-```c
-// Função de saudação
-fun saudacao(nome) {
-  print "Olá, ";
-  print nome;
-}
+    Você pode usar gerenciadores de pacotes específicos de linguagens populares
+    como uv, npm, cargo, etc, containers Docker/Podman, ou `.nix`.
+  - **Exemplos**: o projeto deve conter uma pasta "exemplos" com alguns arquivos
+    na linguagem de programação implementada. Deve conter exemplos com graus
+    variáveis de complexidade. Algo como: hello world, fibonacci, função
+    recursiva, alguma estrutura de dados e para finalizar um algoritmo um pouco
+    mais elaborado como ordenamento de listas, busca binária, etc.
+    
+    Note que isto é apenas um guia da ordem de dificuldade dos problemas.
+    Algumas linguagens sequer permitem a implementação de alguns dos exemplos
+    acima.
+  - **Referências**: descreva as referências que você utilizou para a
+    implementação da linguagem. Faça uma breve descrição do papel de cada
+    referência ou como ela foi usada no projeto. Caso você tenha usado algum 
+    código existente como referência, descreva as suas contribuições originais
+    para o projeto.
+  - **Estrutura do código**: faça uma descrição da estrutura geral do código
+    discutindo os módulos, classes, estruturas de dados ou funções principais. 
+    Explicite onde as etapas tradicionais de compilação (análise léxica, 
+    sintática, semântica, etc) são realizadas, quando relevante.
+  - **Bugs/Limitações/problemas conhecidos**: discuta as limitações do seu
+    projeto e problemas conhecidos e coisas que poderiam ser feitas para
+    melhorá-lo no futuro. Note: considere apenas melhorias incrementais e não
+    melhorias grandes como: "reimplementar tudo em Rust".
+* **Código:** O codigo fonte deve estar presente no repositório principal junto com
+  a declaração das suas dependências. Cada linguagem possui um mecanismo
+  específico para isso, mas seria algo como o arquivo pyproject.toml em Python
+  ou package.json no caso de Javascript.
 
-read nome;
-saudacao(nome);
+## Critérios
 
-for (int i = 1; i <= 3; i = i + 1) {
-  print "Contando:";
-  print i;
-}
-````
+Cada trabalho começa com 100% e pode receber penalizações ou bônus de acordo com
+os critérios abaixo:
 
-## Instalação
+- Ausência do README: -50%
+- Instruções de instalação não funcionam: até -20%
+- Referências não atribuídas ou falta de referâncias: -10%
+- Código confuso ou mal organizado: até -15%
+- Falta de clareza em apresentar as técnicas e etapas de compilação: -15%
+- Bugs e limitações sérias na implementação: até -25%
+- Escopo reduzido, ou implementação insuficiente: até 25%
+- Uso de código não atribuído/plágio: até -100%
+- Repositório bem estruturado e organizado: até 10%
+- Linguagem com conceitos originais/interessantes: até +15%
+- Testes unitários: até +15%, dependendo da cobertura
 
-### Requisitos:
-Node.js (v18 ou superior).
-
-### Passos:
-
-```
-git clone https://github.com/seu-usuario/micro-c-interpreter.git
-cd micro-c-interpreter
-npm install prompt-sync
-node main.js
-````
-O interpretador irá executar o conteúdo do arquivo input.c.
-
-## Estrutura do Código:
-
-``` graphql
-micro-c/
-├── lexer.js           # Analisador léxico (tokenização)
-├── parser.js          # Analisador sintático (AST)
-├── interpreter.js     # Interpretador (execução da AST)
-├── main.js            # Ponto de entrada (carrega e executa input.c)
-├── input.c            # Código-fonte da linguagem Micro C
-└── exemplos/          # Exemplos adicionais da linguagem
-```
-
-### Etapas da compilação:
-1. **Análise léxica:** realizada em ```lexer.js```, que converte o código em tokens.
-2. **Análise sintática:** realizada em ```parser.js```, que constrói a árvore de sintaxe abstrata (AST).
-3. **Execução:** feita em ```interpreter.js```, que interpreta e executa os nós da AST.
-
-## Bugs / Limitações / Problemas Conhecidos
-
-- Não há análise semântica ou verificação de tipos complexos;
-- Não há suporte a escopos aninhados nem funções anônimas;
-- O interpretador é síncrono e linear (sem chamada assíncrona);
-- Arrays e ponteiros não são suportados;
-- A estrutura de controle é limitada ao necessário para os exemplos propostos.
-
-### Futuras melhorias podem incluir suporte a:
-
-- Escopos léxicos e variáveis locais por bloco.
-- Suporte a tipos compostos como arrays e structs.
-- Otimização de AST e implementação de ambiente de execução mais robusto.
-
-## Referências
-
-- Crafting Interpreters – Bob Nystrom: base conceitual para estrutura de interpretadores.
-- Documentação oficial da linguagem C: sintaxe e estruturas base.
-- MDN JavaScript: uso de estruturas como Map, Array, function, etc.
-- As contribuições originais deste projeto incluem:
-  - Implementação completa do parser e interpretador em JavaScript puro;
-  - Suporte completo a funções com retorno, estruturas de repetição, entrada e saída;
-  - Manipulação de strings e comentários inline.
+Após aplicar todos os bônus, a nota é truncada no intervalo 0-100%. 
